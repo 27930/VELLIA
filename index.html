@@ -11,325 +11,133 @@
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
+            background-color: white;
         }
+
         header {
             background-color: #000;
             color: white;
-            padding: 10px;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        nav {
-            margin: 10px;
-            text-align: center;
-        }
-        nav a {
-            margin: 0 15px;
-            color: #333;
-            text-decoration: none;
-        }
-        section {
-            padding: 10px;
-        }
-        .category {
-            margin-bottom: 20px;
-        }
-        .category h2 {
-            text-align: center;
-            color: darkblue;
-        }
-        .products {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 10px;
-        }
-        .products article {
-            width: calc(25% - 20px);
-            border: 1px solid #ddd;
-            padding: 15px;
-            box-sizing: border-box;
-            text-align: center;
-        }
-        img {
-            width: 100%;
-            height: auto;
-        }
-        .buy-button {
-            display: inline-block;
             padding: 10px 20px;
-            margin-top: 10px;
-            background-color: darkblue;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
         }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #000;
-            color: white;
-            margin-top: 20px;
-        }
-        h1 {
-            color: darkblue;
+
+        .logo-container {
             display: flex;
             align-items: center;
-            position: relative;
-            font-size: 2em;
+        }
+
+        .logo-container h1 {
             margin: 0;
+            padding-left: 10px;
+            font-size: 1.8em;
         }
-        h1::before {
-            content: "";
-            position: absolute;
+
+        .logo-container img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .menu-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .menu {
+            display: none;
+            position: fixed;
             top: 0;
-            left: 0;
-            width: 100%;
+            right: 0;
+            width: 50%;
             height: 100%;
-            border: 2px solid darkblue;
-            opacity: 0;
-            animation: draw 2s forwards;
-            z-index: -1;
+            background-color: black;
+            color: white;
+            padding: 20px;
+            box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
         }
+
+        .menu.active {
+            display: block;
+            transform: translateX(0);
+        }
+
+        .menu a {
+            display: block;
+            margin: 20px 0;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+
+        .menu a:hover {
+            color: darkblue;
+        }
+
+        .home-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            background-color: darkblue;
+            border-radius: 5px;
+        }
+
         .icon {
             width: 24px;
             height: 24px;
             animation: draw 2s forwards;
         }
+
         @keyframes draw {
             from { width: 0; height: 0; opacity: 1; }
-            to { width: 27%; height: 26%; opacity: 1; }
+            to { width: 13%; height: 13%; opacity: 1; }
         }
 
-        /* Responsive Design */
+        /* Responsive for mobile */
         @media (max-width: 768px) {
-            .products article {
-                width: calc(50% - 20px);
+            .menu {
+                width: 70%;
             }
         }
-
-        @media (max-width: 480px) {
-            header {
-                flex-direction: column;
-            }
-            .products article {
-                width: 100%; 
-            }
-            nav {
-                margin: 0;
-                padding: 0;
-            }
-            nav a {
-                display: block;
-                margin: 10px 0;
-            }
-        }
+		
     </style>
 </head>
 <body>
 
 <header>
-    <h1>
-        The Wolf Shop
+    <div class="logo-container">
         <img src="4.jpg" alt="علامة الموقع" class="icon">
-    </h1>
+        <h1>The Wolf Shop</h1>
+    </div>
+    <img src="https://via.placeholder.com/24" alt="Menu Icon" class="menu-icon" id="menuIcon">
 </header>
 
-<nav>
-    <a href="#accessories">accessories</a>
-    <a href="#perfumes">Perfumes</a>
-    <a href="#makeup">Makeup</a>
-    <a href="#clothes">clothes</a>
-    <a href="#shoes">shoes</a>
-    <a href="#other">Other</a>
+<!-- Menu -->
+<div class="menu" id="menu">
+    <a href="index.html" class="home-link">Home</a>
     <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx">تواصل معنا</a>
-</nav>
+    <a href="accessories.html">Accessories</a>
+    <a href="perfumes.html">Perfumes</a>
+    <a href="makeup.html">Makeup</a>
+    <a href="clothes.html">Clothes</a>
+    <a href="shoes.html">Shoes</a>
+    <a href="other.html">Other</a>
+</div>
 
-<section>
-    <!-- Accessories -->
-    <div id="accessories" class="category">
-        <h2>Accessories</h2>
-        <div class="products">
-            <article>
-                <img src="1.jpeg" alt="منتج 1">
-                <h2>Product 1</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 100$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-			<article>
-                <img src="1.jpeg" alt="منتج 4">
-                <h2>Product 4</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 250$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-			<article>
-                <img src="C:\Users\amroa\Desktop\example.jpeg" alt="منتج 4">
-                <h2>Product 4</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 250$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-            <!-- more-->
-        </div>
-    </div>
+<script>
+    // Toggle Menu
+    const menuIcon = document.getElementById('menuIcon');
+    const menu = document.getElementById('menu');
 
-    <!-- Perfumes -->
-    <div id="perfumes" class="category">
-        <h2>Perfumes</h2>
-        <div class="products">
-            <article>
-                <img src="C:\Users\amroa\Desktop\2.jpeg" alt="منتج 2">
-                <h2>Product 2</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 200$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-			<article>
-                <img src="C:\Users\amroa\Desktop\example.jpeg" alt="منتج 4">
-                <h2>Product 4</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 250$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-			<article>
-                <img src="C:\Users\amroa\Desktop\example.jpeg" alt="منتج 4">
-                <h2>Product 4</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 250$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-            <!-- more-->
-        </div>
-    </div>
-
-    <!-- Makeup -->
-    <div id="makeup" class="category">
-        <h2>Makeup</h2>
-        <div class="products">
-            <article>
-                <img src="C:\Users\amroa\Desktop\1.jpeg" alt="منتج 3">
-                <h2>Product 3</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 150$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-			<article>
-                <img src="C:\Users\amroa\Desktop\example.jpeg" alt="منتج 4">
-                <h2>Product 4</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 250$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-			<article>
-                <img src="C:\Users\amroa\Desktop\example.jpeg" alt="منتج 4">
-                <h2>Product 4</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 250$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-            <!-- more-->
-        </div>
-    </div>
-
-    <!-- Clothes -->
-    <div id="clothes" class="category">
-        <h2>Clothes</h2>
-        <div class="products">
-            <article>
-                <img src="C:\Users\amroa\Desktop\1.jpeg" alt="منتج 3">
-                <h2>Product 3</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 150$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-			<article>
-                <img src="C:\Users\amroa\Desktop\example.jpeg" alt="منتج 4">
-                <h2>Product 4</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 250$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-			<article>
-                <img src="C:\Users\amroa\Desktop\example.jpeg" alt="منتج 4">
-                <h2>Product 4</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 250$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-            <!-- more-->
-        </div>
-    </div>
-
-    <!-- Shoes -->
-    <div id="shoes" class="category">
-        <h2>shoes</h2>
-        <div class="products">
-            <article>
-                <img src="C:\Users\amroa\Desktop\3.jpeg" alt="منتج 1">
-                <h2>Product 1</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 100$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-			<article>
-                <img src="C:\Users\amroa\Desktop\example.jpeg" alt="منتج 4">
-                <h2>Product 4</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 250$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-			<article>
-                <img src="C:\Users\amroa\Desktop\example.jpeg" alt="منتج 4">
-                <h2>Product 4</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 250$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-            <!-- more-->
-        </div>
-    </div>
-
-    <!-- Other -->
-    <div id="other" class="category">
-        <h2>Other</h2>
-        <div class="products">
-            <article>
-                <img src="1.jpeg" alt="منتج 4">
-                <h2>Product 4</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 250$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-			<article>
-                <img src="1.jpeg" alt="منتج 4">
-                <h2>Product 4</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 250$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-			<article>
-                <img src="1.jpeg" alt="منتج 4">
-                <h2>Product 4</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 250$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-            <!-- more-->
-        </div>
-    </div>
-</section>
-
-<footer>
-    <p style="color:red;">جميع الحقوق محفوظة#</p>
-    <h3 style="color:red;">The site was made by Mustafa</h3>
-</footer>
+    menuIcon.addEventListener('click', () => {
+        menu.classList.toggle('active');
+    });
+</script>
 
 </body>
 </html>
