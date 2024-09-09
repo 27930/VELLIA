@@ -18,10 +18,34 @@
             padding: 10px;
             text-align: center;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
             flex-wrap: wrap;
+        }
+        header .menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 10px;
+            background-color: #000;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        header .menu a {
+            display: block;
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+        header .menu a:hover {
+            background-color: #333;
+        }
+        .menu-icon {
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
         }
         nav {
             margin: 10px;
@@ -105,17 +129,21 @@
             from { width: 0; height: 0; opacity: 1; }
             to { width: 27%; height: 26%; opacity: 1; }
         }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             .products article {
                 width: calc(50% - 20px);
             }
         }
-
         @media (max-width: 480px) {
             header {
                 flex-direction: column;
+            }
+            nav {
+                display: none;
+            }
+            .menu {
+                display: block;
             }
             .products article {
                 width: 100%; 
@@ -138,17 +166,17 @@
         The Wolf Shop
         <img src="4.jpg" alt="علامة الموقع" class="icon">
     </h1>
+    <img src="menu-icon.png" alt="قائمة" class="menu-icon" onclick="toggleMenu()">
+    <div class="menu" id="menu">
+        <a href="#accessories">accessories</a>
+        <a href="#perfumes">Perfumes</a>
+        <a href="#makeup">Makeup</a>
+        <a href="#clothes">clothes</a>
+        <a href="#shoes">shoes</a>
+        <a href="#other">Other</a>
+        <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx">تواصل معنا</a>
+    </div>
 </header>
-
-<nav>
-    <a href="#accessories">accessories</a>
-    <a href="#perfumes">Perfumes</a>
-    <a href="#makeup">Makeup</a>
-    <a href="#clothes">clothes</a>
-    <a href="#shoes">shoes</a>
-    <a href="#other">Other</a>
-    <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx">تواصل معنا</a>
-</nav>
 
 <section>
     <!-- Accessories -->
