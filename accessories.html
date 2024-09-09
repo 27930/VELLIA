@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Wolf Shop</title>
-	<style>
-		/* تصميم الصفحة العامة */
-		body {
+    <style>
+        /* تصميم الصفحة العامة */
+        body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -130,6 +130,8 @@
         h2 {
             font-size: 1.5em;
             margin: 10px 0;
+            text-align: center;
+            width: 100%; /* تأكد من أن h2 يأخذ العرض الكامل للعنصر الحاوي */
         }
 
         p {
@@ -152,17 +154,51 @@
             background-color: #0044cc;
         }
 
-        /* التصميم للأجهزة الصغيرة */
-        @media (max-width: 768px) {
-            .menu {
-                width: 70%;
-            }
-
-            .products {
-                grid-template-columns: 1fr;
-            }
+        /* تصميم النافذة المنبثقة */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
         }
-	</style>
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 20px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
@@ -186,6 +222,18 @@
     <a href="other.html">Other</a>
 </div>
 
+<!-- نافذة منبثقة -->
+<div id="purchaseModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>اختر طريقة الشراء:</h3>
+        <div class="modal-buttons">
+            <button id="instagramButton">شراء عبر Instagram</button>
+            <button id="emailButton">شراء عبر البريد الإلكتروني</button>
+        </div>
+    </div>
+</div>
+
 <script>
     // Toggle Menu
     const menuIcon = document.getElementById('menuIcon');
@@ -194,6 +242,48 @@
     menuIcon.addEventListener('click', () => {
         menu.classList.toggle('active');
     });
+
+    // Modal Variables
+    const purchaseModal = document.getElementById('purchaseModal');
+    const closeModal = document.querySelector('.close');
+    const instagramButton = document.getElementById('instagramButton');
+    const emailButton = document.getElementById('emailButton');
+
+    // Show modal when clicking the buy button
+    document.querySelectorAll('.buy-button').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            purchaseModal.style.display = 'block';
+        });
+    });
+
+    // Close modal
+    closeModal.addEventListener('click', function() {
+        purchaseModal.style.display = 'none';
+    });
+
+    // Instagram Purchase
+    instagramButton.addEventListener('click', function() {
+        window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank');
+        purchaseModal.style.display = 'none';
+    });
+
+    // Email Purchase
+    emailButton.addEventListener('click', function() {
+        purchaseModal.style.display = 'none';
+        const email = prompt('الرجاء إدخال بريدك الإلكتروني:');
+        if (email) {
+            alert('تم إرسال طلبك على البريد الإلكتروني. شكرًا!');
+            // Logic to send email can be added here using a backend service.
+        }
+    });
+
+    // Close modal if clicking outside the modal content
+    window.onclick = function(event) {
+        if (event.target == purchaseModal) {
+            purchaseModal.style.display = 'none';
+        }
+    };
 </script>
 
 <section>
@@ -201,8 +291,8 @@
         <h2>accessories</h2>
         <div class="products">
             <article>
-                <img src="1.jpeg" alt="منتج 1">
-                <h2>Product 1</h2>
+                <img src="1.jpeg" alt="منتج 2">
+                <h2>Product 2</h2>
                 <p>وصف قصير للمنتج.</p>
                 <p>السعر: 200$</p>
                 <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
@@ -211,14 +301,14 @@
                 <img src="1.jpeg" alt="منتج 2">
                 <h2>Product 2</h2>
                 <p>وصف قصير للمنتج.</p>
-                <p>السعر: 250$</p>
+                <p>السعر: 200$</p>
                 <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
             </article>
             <article>
-                <img src="1.jpeg" alt="منتج 3">
-                <h2>Product 3</h2>
+                <img src="1.jpeg" alt="منتج 2">
+                <h2>Product 2</h2>
                 <p>وصف قصير للمنتج.</p>
-                <p>السعر: 300$</p>
+                <p>السعر: 200$</p>
                 <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
             </article>
         </div>
