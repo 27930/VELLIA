@@ -146,6 +146,7 @@
         .info-box p {
             font-size: 1.2em;
         }
+
     </style>
 </head>
 <body>
@@ -200,14 +201,6 @@
             box.style.transform = 'translateY(0)';
         });
     });
-
-    // عند تحميل الصفحة، أرسل طلبًا إلى log_ip.php
-    window.onload = function() {
-        fetch('log_ip.php')
-            .then(response => response.text())
-            .then(data => console.log(data))
-            .catch(error => console.error('Error:', error));
-    }
 </script>
 
 </body>
