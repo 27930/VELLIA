@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wolf Shop</title>
+	<style>
+	body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            background-color: white;
+        }
+
+        header {
+            background-color: #000;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container h1 {
+            margin: 0;
+            padding-left: 10px;
+            font-size: 1.8em;
+        }
+
+        .logo-container img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .menu-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-color: black;
+            color: white;
+            padding: 20px;
+            box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+
+        .menu.active {
+            display: block;
+            transform: translateX(0);
+        }
+
+        .menu a {
+            display: block;
+            margin: 20px 0;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+
+        .menu a:hover {
+            color: darkblue;
+        }
+
+        .home-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            background-color: darkblue;
+            border-radius: 5px;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            animation: draw 2s forwards;
+        }
+
+        @keyframes draw {
+            from { width: 0; height: 0; opacity: 1; }
+            to { width: 13%; height: 13%; opacity: 1; }
+        }
+
+        /* Responsive for mobile */
+        @media (max-width: 768px) {
+            .menu {
+                width: 70%;
+            }
+        }
+	</style>
+</head>
+<body>
+
+<header>
+<div class="logo-container">
+        <img src="C:\Users\amroa\Desktop\img\4.jpg" alt="علامة الموقع" class="icon">
+        <h1>The Wolf Shop</h1>
+    </div>
+    <img src="https://via.placeholder.com/24" alt="Menu Icon" class="menu-icon" id="menuIcon">
+</header>
+<<!-- Menu -->
+<div class="menu" id="menu">
+    <a href="index.html">Home</a>
+    <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx">تواصل معنا</a>
+    <a href="accessories.html">Accessories</a>
+    <a href="perfumes.html">Perfumes</a>
+    <a href="makeup.html">Makeup</a>
+    <a href="clothes.html">Clothes</a>
+    <a href="shoes.html">Shoes</a>
+    <a href="other.html">Other</a>
+</div>
+<script>
+    // Toggle Menu
+    const menuIcon = document.getElementById('menuIcon');
+    const menu = document.getElementById('menu');
+
+    menuIcon.addEventListener('click', () => {
+        menu.classList.toggle('active');
+    });
+</script>
+<section>
+<!-- makeup -->
+    <div id="makeup" class="category">
+        <h2>makeup</h2>
+        <div class="products">
+            <article>
+                <img src="1.jpeg" alt="منتج 2">
+                <h2>Product 2</h2>
+                <p>وصف قصير للمنتج.</p>
+                <p>السعر: 200$</p>
+                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
+            </article>
+			<article>
+                <img src="1.jpeg" alt="منتج 4">
+                <h2>Product 4</h2>
+                <p>وصف قصير للمنتج.</p>
+                <p>السعر: 250$</p>
+                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
+            </article>
+			<article>
+                <img src="1.jpeg" alt="منتج 4">
+                <h2>Product 4</h2>
+                <p>وصف قصير للمنتج.</p>
+                <p>السعر: 250$</p>
+                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
+            </article>
+            <!-- more-->
+        </div>
+    </div>
+</section>
