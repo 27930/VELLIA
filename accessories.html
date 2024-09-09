@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Wolf Shop</title>
 	<style>
-	body {
+		/* تصميم الصفحة العامة */
+		body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -98,10 +99,67 @@
             to { width: 13%; height: 13%; opacity: 1; }
         }
 
-        /* Responsive for mobile */
+        /* تصميم المنتجات */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        article {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        article:hover {
+            transform: scale(1.05);
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px 10px 0 0;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        p {
+            font-size: 1em;
+            color: #555;
+        }
+
+        .buy-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: darkblue;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .buy-button:hover {
+            background-color: #0044cc;
+        }
+
+        /* التصميم للأجهزة الصغيرة */
         @media (max-width: 768px) {
             .menu {
                 width: 70%;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
             }
         }
 	</style>
@@ -113,9 +171,10 @@
         <img src="4.jpg" alt="علامة الموقع" class="icon">
         <h1>The Wolf Shop</h1>
     </div>
-    <img src="....jpeg" alt="Menu Icon" class="menu-icon" id="menuIcon">
+    <img src="menu.jpeg" alt="Menu Icon" class="menu-icon" id="menuIcon">
 </header>
-<<!-- Menu -->
+
+<!-- Menu -->
 <div class="menu" id="menu">
     <a href="index.html">Home</a>
     <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx">تواصل معنا</a>
@@ -126,6 +185,7 @@
     <a href="shoes.html">Shoes</a>
     <a href="other.html">Other</a>
 </div>
+
 <script>
     // Toggle Menu
     const menuIcon = document.getElementById('menuIcon');
@@ -135,33 +195,35 @@
         menu.classList.toggle('active');
     });
 </script>
+
 <section>
-<!-- accessories -->
     <div id="accessories" class="category">
         <h2>accessories</h2>
         <div class="products">
             <article>
-                <img src="1.jpeg" width="500" height="300" alt="منتج 4">
-                <h2 text-align:center>Product 2</h2>
+                <img src="1.jpeg" alt="منتج 1">
+                <h2>Product 1</h2>
                 <p>وصف قصير للمنتج.</p>
                 <p>السعر: 200$</p>
                 <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
             </article>
-			<article>
-                <img src="1.jpeg" width="500" height="300" alt="منتج 4">
-                <h2>Product 4</h2>
+            <article>
+                <img src="1.jpeg" alt="منتج 2">
+                <h2>Product 2</h2>
                 <p>وصف قصير للمنتج.</p>
                 <p>السعر: 250$</p>
                 <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
             </article>
-			<article>
-                <img src="1.jpeg" width="500" height="300" alt="منتج 4">
-                <h2>Product 4</h2>
+            <article>
+                <img src="1.jpeg" alt="منتج 3">
+                <h2>Product 3</h2>
                 <p>وصف قصير للمنتج.</p>
-                <p>السعر: 250$</p>
+                <p>السعر: 300$</p>
                 <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
             </article>
-            <!-- more-->
         </div>
     </div>
-</section>        
+</section>
+
+</body>
+</html>
