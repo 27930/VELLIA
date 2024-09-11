@@ -196,41 +196,40 @@
         .info-box p {
             font-size: 1.2em;
         }
-		 footer {
-            background: #000;
-            color: white;
-            padding: 1px 20px;
-            text-align: center;
-            position: fixed;
+		 #navbar2 {
+            position: fixed; 
             bottom: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            left: 0;
+            width: 100%; 
+            background-color: #333; 
+            color: white;
+            padding: 10px 0;
+            z-index: 1000; 
         }
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-        }
-        .footer-left {
-            flex: 1;
-            text-align: left;
-        }
-        .footer-center {
-            flex: 1;
+
+        #navbar2 ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
             text-align: center;
-            font-size: 18px;
-            font-weight: bold;
         }
-        .footer-right {
-            flex: 1;
-            text-align: right;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
+
+        #navbar2 ul li {
+            display: inline; 
+            margin: 0 20px;
+        }
+
+        #navbar2 ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        #navbar2 ul li a:hover {
+            background-color: #575757; 
+            border-radius: 5px;
         }
         .social-icon {
             width: 24px;
@@ -302,24 +301,14 @@
         <p>...</p>
     </div>
 </div>
-<footer>
-    <div class="footer-content">
-        <div class="footer-left">
-            <img src="4.jpg" alt="Logo" class="logo">
-        </div>
-        <div class="footer-center">
-            <p style="color:blue">The Wolf Shop</p>
-        </div>
-        <div class="footer-right">
-            <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank">
-                <img src="insta2.png" alt="Instagram" class="social-icon">
-            </a>
-            <a href="https://www.facebook.com" target="_blank">
-                <img src="facebook-icon.png" alt="Facebook" class="social-icon">
-            </a>
-        </div>
+<div id="navbar2">
+        <ul>
+            <li><a href="https://www.instagram.com/m._.j2008/?hl=en">Instagram</a></li>
+            <li><a href="https://www.facebook.com/mustafa.abujmial">Facebook</a></li>
+            <li><a href="https://www.snapchat.com/add/thewolf_shop?invite_id=9oBy91K-&locale=en_JO&share_id=Ci77wqi_SveHHnT-Xh1-NQ&xp_id=1&sid=466c492798384791ae7191bcc66c5481">snapchat</a></li>
+            <li><a href="tel:0791986842">اتصل بنا</a></li>
+        </ul>
     </div>
-</footer>
 
 <script>
     // Toggle Menu
