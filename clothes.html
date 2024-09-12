@@ -12,7 +12,7 @@
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
-            background-color: white;
+            background-color: #f4f4f4;
         }
 
         header {
@@ -23,6 +23,7 @@
             justify-content: space-between;
             align-items: center;
             height: 80px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .logo-container {
@@ -73,10 +74,11 @@
             color: white;
             text-decoration: none;
             font-size: 1.5em;
+            transition: color 0.3s ease;
         }
 
         .menu a:hover {
-            color: darkblue;
+            color: #ff6347;
         }
 
         .home-link {
@@ -84,119 +86,83 @@
             text-decoration: none;
             font-size: 1.2em;
             padding: 10px 20px;
-            background-color: darkblue;
+            background-color: #ff6347;
             border-radius: 5px;
         }
 
-        .icon {
-            width: 24px;
-            height: 24px;
-            animation: draw 2s forwards;
-        }
-
-        @keyframes draw {
-            from { width: 0; height: 0; opacity: 1; }
-            to { width: 13%; height: 13%; opacity: 1; }
-        }
-
-        /* تصميم المنتجات */
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-
-        article {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+        /* تحسين تصميم الأقسام */
+        .category {
+            padding: 50px 20px;
             text-align: center;
-            transition: transform 0.2s;
+            background-color: white;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        article:hover {
-            transform: scale(1.05);
-        }
-
-        img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px 10px 0 0;
+        .category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
         h2 {
-            font-size: 1.5em;
-            margin: 10px 0;
-            text-align: center;
-            width: 100%; /* تأكد من أن h2 يأخذ العرض الكامل للعنصر الحاوي */
-        }
-
-        p {
-            font-size: 1em;
-            color: #555;
-        }
-
-        .buy-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: darkblue;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-        }
-
-        .buy-button:hover {
-            background-color: #0044cc;
-        }
-
-        /* تصميم النافذة المنبثقة */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 15% auto;
-            padding: 20px;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .modal-content h3 {
+            font-size: 2.2em;
             margin-bottom: 20px;
+            color: #333;
         }
 
-        .modal-buttons {
-            display: flex;
-            justify-content: space-around;
+        .slider {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
         }
 
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+        .slides img {
+            width: 100%;
+            border-radius: 10px;
+            display: none;
+            transition: opacity 1s ease;
         }
 
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
+        /* إظهار الصورة النشطة */
+        .slides img.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* تصميم إضافي لجعل الصفحة أكثر جاذبية */
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .slides img {
+            position: absolute;
+            animation: fadeInOut 9s infinite;
+        }
+
+        /* تحسين استجابة الشاشة */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .logo-container h1 {
+                font-size: 1.5em;
+            }
+
+            .category {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .slider {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -222,17 +188,68 @@
     <a href="other.html">Other</a>
 </div>
 
-<!-- نافذة منبثقة -->
-<div id="purchaseModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h3>اختر طريقة الشراء:</h3>
-        <div class="modal-buttons">
-            <button id="instagramButton">شراء عبر Instagram</button>
-            <button id="emailButton">شراء عبر البريد الإلكتروني</button>
+<!-- الأقسام -->
+<section>
+    <!-- قسم الرجالي -->
+    <div id="men" class="category">
+        <h2><a href="men.html">قسم الرجالي</a></h2>
+        <div class="slider">
+            <div class="slides">
+                <img src="comming soon.jpeg" class="active" alt="صورة رجالي 1">
+                <img src="clothesm.jpg" alt="صورة رجالي 2">
+                <img src="comming soon.jpeg" alt="صورة رجالي 3">
+            </div>
         </div>
     </div>
-</div>
+    
+    <!-- قسم النسائي -->
+    <div id="women" class="category">
+        <h2><a href="women.html">قسم النسائي</a></h2>
+        <div class="slider">
+            <div class="slides">
+                <img src="comming soon.jpeg" class="active" alt="صورة نسائي 1">
+                <img src="clothesw.jpg" alt="صورة نسائي 2">
+                <img src="comming soon.jpeg" alt="صورة نسائي 3">
+            </div>
+        </div>
+    </div>
+    
+    <!-- قسم الولادي -->
+    <div id="boys" class="category">
+        <h2><a href="boys.html">قسم الولادي</a></h2>
+        <div class="slider">
+            <div class="slides">
+                <img src="comming soon.jpeg" class="active" alt="صورة ولادي 1">
+                <img src="comming soon.jpeg" alt="صورة ولادي 2">
+                <img src="comming soon.jpeg" alt="صورة ولادي 3">
+            </div>
+        </div>
+    </div>
+    
+    <!-- قسم البناتي -->
+    <div id="girls" class="category">
+        <h2><a href="girls.html">قسم البناتي</a></h2>
+        <div class="slider">
+            <div class="slides">
+                <img src="comming soon.jpeg" class="active" alt="صورة بناتي 1">
+                <img src="comming soon.jpeg" alt="صورة بناتي 2">
+                <img src="comming soon.jpeg" alt="صورة بناتي 3">
+            </div>
+        </div>
+    </div>
+    
+    <!-- قسم الأطفال -->
+    <div id="kids" class="category">
+        <h2><a href="kids.html">قسم الأطفال</a></h2>
+        <div class="slider">
+            <div class="slides">
+                <img src="comming soon.jpeg" class="active" alt="صورة أطفال 1">
+                <img src="comming soon.jpeg" alt="صورة أطفال 2">
+                <img src="comming soon.jpeg" alt="صورة أطفال 3">
+            </div>
+        </div>
+    </div>
+</section>
 
 <script>
     // Toggle Menu
@@ -243,77 +260,18 @@
         menu.classList.toggle('active');
     });
 
-    // Modal Variables
-    const purchaseModal = document.getElementById('purchaseModal');
-    const closeModal = document.querySelector('.close');
-    const instagramButton = document.getElementById('instagramButton');
-    const emailButton = document.getElementById('emailButton');
-
-    // Show modal when clicking the buy button
-    document.querySelectorAll('.buy-button').forEach(button => {
-        button.addEventListener('click', function(event) {
-            event.preventDefault();
-            purchaseModal.style.display = 'block';
-        });
+    // شيفرة لتغيير الصور كل 3 ثواني
+    const sliders = document.querySelectorAll('.slides');
+    sliders.forEach(slider => {
+        let index = 0;
+        const images = slider.querySelectorAll('img');
+        setInterval(() => {
+            images[index].classList.remove('active');
+            index = (index + 1) % images.length;
+            images[index].classList.add('active');
+        }, 3000);
     });
-
-    // Close modal
-    closeModal.addEventListener('click', function() {
-        purchaseModal.style.display = 'none';
-    });
-
-    // Instagram Purchase
-    instagramButton.addEventListener('click', function() {
-        window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank');
-        purchaseModal.style.display = 'none';
-    });
-
-    // Email Purchase
-    emailButton.addEventListener('click', function() {
-        purchaseModal.style.display = 'none';
-        const email = prompt('الرجاء إدخال بريدك الإلكتروني:');
-        if (email) {
-            alert('تم إرسال طلبك على البريد الإلكتروني. شكرًا!');
-            // Logic to send email can be added here using a backend service.
-        }
-    });
-
-    // Close modal if clicking outside the modal content
-    window.onclick = function(event) {
-        if (event.target == purchaseModal) {
-            purchaseModal.style.display = 'none';
-        }
-    };
 </script>
-
-<section>
-    <div id="clothes" class="category">
-        <h2>clothes</h2>
-        <div class="products">
-            <article>
-                <img src="1.jpeg" alt="منتج 2">
-                <h2>Product 2</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 200$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-            <article>
-                <img src="1.jpeg" alt="منتج 2">
-                <h2>Product 2</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 200$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-            <article>
-                <img src="1.jpeg" alt="منتج 2">
-                <h2>Product 2</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 200$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-        </div>
-    </div>
-</section>
 
 </body>
 </html>
