@@ -125,13 +125,14 @@
             width: 100%;
             height: auto;
             border-radius: 10px 10px 0 0;
+            cursor: pointer; /* نضيف هذا حتى يظهر أن الصورة قابلة للنقر */
         }
 
         h2 {
             font-size: 1.5em;
             margin: 10px 0;
             text-align: center;
-            width: 100%; /* تأكد من أن h2 يأخذ العرض الكامل للعنصر الحاوي */
+            width: 100%;
         }
 
         p {
@@ -168,16 +169,54 @@
 
         .modal-content {
             background-color: #fff;
-            margin: 15% auto;
+            margin: 10% auto;
             padding: 20px;
             width: 80%;
-            max-width: 500px;
+            max-width: 600px;
             border-radius: 10px;
             text-align: center;
         }
 
-        .modal-content h3 {
-            margin-bottom: 20px;
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .modal-content .slider {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .modal-content .slider img {
+            width: 100%;
+            height: auto;
+        }
+
+        .modal-content .slider .prev,
+        .modal-content .slider .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .modal-content .slider .prev {
+            left: 0;
+        }
+
+        .modal-content .slider .next {
+            right: 0;
+        }
+
+        .modal-content .buy-button {
+            margin-top: 20px;
         }
 
         .modal-buttons {
@@ -222,17 +261,39 @@
     <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx">تواصل معنا</a>
 </div>
 
-<!-- نافذة منبثقة -->
-<div id="purchaseModal" class="modal">
+<!-- نافذة منبثقة للمنتجات -->
+<div id="productModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h3>اختر طريقة الشراء:</h3>
-        <div class="modal-buttons">
-            <button id="instagramButton">شراء عبر Instagram</button>
-            <button id="emailButton">شراء عبر البريد الإلكتروني</button>
+        <div class="slider">
+            <button class="prev">&lt;</button>
+            <img id="productImage" src="" alt="Product Image">
+            <button class="next">&gt;</button>
         </div>
+        <h3 id="productTitle"></h3>
+        <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button">شراء الآن</a>
     </div>
 </div>
+
+<section>
+    <div id="accessories" class="category">
+        <h2>accessories</h2>
+        <div class="products">
+            <article>
+                <img src="مبخرة مع زيت.jpg" alt="مبخرة مع زيت" data-title="مبخرة مع زيت" data-images="مبخرة مع زيت.jpg,C:\Users\amroa\Desktop\زيت عطر فانيلا.jpg,C:\Users\amroa\Desktop\زيت عطر لفندر.jpg">
+                <h2>مبخرة مع زيت</h2>
+                <p>مبخرة مع عطر زيتي ب 4 نكهات</p>
+                <p>4 JD</p>
+            </article>
+            <article>
+                <img src="1.jpeg" alt="منتج 2" data-title="منتج 2" data-images="1.jpeg,2.jpeg,3.jpeg">
+                <h2>منتج 2</h2>
+                <p>وصف قصير للمنتج.</p>
+                <p>السعر: 200$</p>
+            </article>
+        </div>
+    </div>
+</section>
 
 <script>
     // Toggle Menu
@@ -244,76 +305,48 @@
     });
 
     // Modal Variables
-    const purchaseModal = document.getElementById('purchaseModal');
+    const productModal = document.getElementById('productModal');
     const closeModal = document.querySelector('.close');
-    const instagramButton = document.getElementById('instagramButton');
-    const emailButton = document.getElementById('emailButton');
+    const productImage = document.getElementById('productImage');
+    const productTitle = document.getElementById('productTitle');
+    let currentImageIndex = 0;
+    let imagesArray = [];
 
-    // Show modal when clicking the buy button
-    document.querySelectorAll('.buy-button').forEach(button => {
-        button.addEventListener('click', function(event) {
-            event.preventDefault();
-            purchaseModal.style.display = 'block';
+    // Function to show the modal
+    document.querySelectorAll('.products img').forEach(image => {
+        image.addEventListener('click', function() {
+            const images = this.getAttribute('data-images').split(',');
+            imagesArray = images;
+            currentImageIndex = 0;
+            productImage.src = imagesArray[currentImageIndex];
+            productTitle.textContent = this.getAttribute('data-title');
+            productModal.style.display = 'block';
         });
     });
 
     // Close modal
     closeModal.addEventListener('click', function() {
-        purchaseModal.style.display = 'none';
+        productModal.style.display = 'none';
     });
 
-    // Instagram Purchase
-    instagramButton.addEventListener('click', function() {
-        window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank');
-        purchaseModal.style.display = 'none';
+    // Image slider functionality
+    document.querySelector('.next').addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex + 1) % imagesArray.length;
+        productImage.src = imagesArray[currentImageIndex];
     });
 
-    // Email Purchase
-    emailButton.addEventListener('click', function() {
-        purchaseModal.style.display = 'none';
-        const email = prompt('الرجاء إدخال بريدك الإلكتروني:');
-        if (email) {
-            alert('تم إرسال طلبك على البريد الإلكتروني. شكرًا!');
-            // Logic to send email can be added here using a backend service.
-        }
+    document.querySelector('.prev').addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex - 1 + imagesArray.length) % imagesArray.length;
+        productImage.src = imagesArray[currentImageIndex];
     });
 
     // Close modal if clicking outside the modal content
     window.onclick = function(event) {
-        if (event.target == purchaseModal) {
-            purchaseModal.style.display = 'none';
+        if (event.target == productModal) {
+            productModal.style.display = 'none';
         }
     };
 </script>
-
-<section>
-    <div id="accessories" class="category">
-        <h2>accessories</h2>
-        <div class="products">
-            <article>
-                <img src="مبخرة مع زيت.jpg" alt="منتج 2">
-                <h2>Product 2</h2>
-                <p>مبخرة مع عطر زيتي ب 4 نكهات</p>
-                <p>السعر: 200$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-            <article>
-                <img src="1.jpeg" alt="منتج 2">
-                <h2>Product 2</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 200$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-            <article>
-                <img src="1.jpeg" alt="منتج 2">
-                <h2>Product 2</h2>
-                <p>وصف قصير للمنتج.</p>
-                <p>السعر: 200$</p>
-                <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button" onclick="event.preventDefault(); window.open('https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx', '_blank'); alert('اذا كنت ترغب في شراء المنتج الرجاء التواصل معنا على صفحتنا في انستقرام');">شراء الآن</a>
-            </article>
-        </div>
-    </div>
-</section>
 
 </body>
 </html>
