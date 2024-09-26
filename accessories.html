@@ -156,88 +156,88 @@
             background-color: #0044cc;
         }
 
-        /* تصميم النافذة المنبثقة */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
+       /* تصميم النافذة المنبثقة */
+.modal {
+    display: none; /* إخفاء النافذة بشكل افتراضي */
+    position: fixed; /* تجعل النافذة في مكان ثابت */
+    z-index: 1000; /* تجعلها فوق العناصر الأخرى */
+    left: 50%; /* مركز النافذة من اليسار */
+    top: 50%; /* مركز النافذة من الأعلى */
+    transform: translate(-50%, -50%); /* محاذاة النافذة في المنتصف */
+    width: 60%; /* عرض النافذة (أصغر) */
+    max-width: 400px; /* الحد الأقصى للعرض (أصغر) */
+    height: auto; /* ارتفاع النافذة تلقائي */
+    background-color: rgba(0, 0, 0, 0.5); /* الخلفية الشفافة */
+}
 
-        .modal-content {
-            background-color: #fff;
-            margin: 10% auto;
-            padding: 20px;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 10px;
-            text-align: center;
-        }
+.modal-content {
+    background-color: #fff; /* خلفية المحتوى */
+    padding: 20px; /* مسافة داخلية */
+    border-radius: 10px; /* زوايا دائرية */
+    text-align: center; /* محاذاة النص */
+}
 
-        .modal-content img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
+.modal-content img {
+    width: 100%; /* عرض الصورة */
+    height: auto; /* ارتفاع تلقائي */
+    border-radius: 10px; /* زوايا دائرية للصورة */
+    margin-bottom: 15px; /* مسافة تحت الصورة */
+}
 
-        .modal-content .slider {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
+.modal-content .slider {
+    position: relative; /* موضع نسبي للزر */
+    display: flex; /* استخدام الفليكس */
+    align-items: center; /* محاذاة العناصر */
+}
 
-        .modal-content .slider img {
-            width: 100%;
-            height: auto;
-        }
+.modal-content .slider img {
+    width: 100%; /* عرض الصورة في السلايدر */
+    height: auto; /* ارتفاع تلقائي */
+}
 
-        .modal-content .slider .prev,
-        .modal-content .slider .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
+.modal-content .slider .prev,
+.modal-content .slider .next {
+    position: absolute; /* موضع مطلق */
+    top: 50%; /* مركز من الأعلى */
+    transform: translateY(-50%); /* محاذاة عمودياً */
+    background-color: rgba(0, 0, 0, 0.5); /* لون الخلفية */
+    color: white; /* لون النص */
+    border: none; /* بدون حدود */
+    padding: 10px; /* مسافة داخلية */
+    cursor: pointer; /* شكل المؤشر */
+}
 
-        .modal-content .slider .prev {
-            left: 0;
-        }
+.modal-content .slider .prev {
+    left: 0; /* الجانب الأيسر */
+}
 
-        .modal-content .slider .next {
-            right: 0;
-        }
+.modal-content .slider .next {
+    right: 0; /* الجانب الأيمن */
+}
 
-        .modal-content .buy-button {
-            margin-top: 20px;
-        }
+.modal-content .buy-button {
+    margin-top: 20px; /* مسافة فوق زر الشراء */
+}
 
-        .modal-buttons {
-            display: flex;
-            justify-content: space-around;
-        }
+.modal-buttons {
+    display: flex; /* استخدام الفليكس */
+    justify-content: space-around; /* توزيع العناصر */
+}
 
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
+.close {
+    color: #aaa; /* لون الزر */
+    float: right; /* محاذاة إلى اليمين */
+    font-size: 28px; /* حجم الخط */
+    font-weight: bold; /* سمك الخط */
+}
 
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+.close:hover,
+.close:focus {
+    color: black; /* لون عند التحويم */
+    text-decoration: none; /* إزالة التسطير */
+    cursor: pointer; /* شكل المؤشر */
+}
+
     </style>
 </head>
 <body>
