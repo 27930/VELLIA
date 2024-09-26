@@ -1,395 +1,81 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wolf Shop</title>
-    <link rel="icon" href="logo00.jpg">
-    <style>
-        /* تصميم الصفحة العامة */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-            background-color: white;
-        }
+/* تصميم النافذة المنبثقة */
+.modal {
+    display: none; /* إخفاء النافذة بشكل افتراضي */
+    position: fixed; /* تجعل النافذة في مكان ثابت */
+    z-index: 1000; /* تجعلها فوق العناصر الأخرى */
+    left: 50%; /* مركز النافذة من اليسار */
+    top: 50%; /* مركز النافذة من الأعلى */
+    transform: translate(-50%, -50%); /* محاذاة النافذة في المنتصف */
+    width: 60%; /* عرض النافذة (أصغر) */
+    max-width: 400px; /* الحد الأقصى للعرض (أصغر) */
+    height: auto; /* ارتفاع النافذة تلقائي */
+    background-color: rgba(0, 0, 0, 0.5); /* الخلفية الشفافة */
+}
 
-        header {
-            background-color: #000;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
+.modal-content {
+    background-color: #fff; /* خلفية المحتوى */
+    padding: 20px; /* مسافة داخلية */
+    border-radius: 10px; /* زوايا دائرية */
+    text-align: center; /* محاذاة النص */
+}
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
+.modal-content img {
+    width: 100%; /* عرض الصورة */
+    height: auto; /* ارتفاع تلقائي */
+    border-radius: 10px; /* زوايا دائرية للصورة */
+    margin-bottom: 15px; /* مسافة تحت الصورة */
+}
 
-        .logo-container h1 {
-            margin: 0;
-            padding-left: 10px;
-            font-size: 1.8em;
-        }
+.modal-content .slider {
+    position: relative; /* موضع نسبي للزر */
+    display: flex; /* استخدام الفليكس */
+    align-items: center; /* محاذاة العناصر */
+}
 
-        .logo-container img {
-            width: 50px;
-            height: 50px;
-        }
+.modal-content .slider img {
+    width: 100%; /* عرض الصورة في السلايدر */
+    height: auto; /* ارتفاع تلقائي */
+}
 
-        .menu-icon {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-        }
+.modal-content .slider .prev,
+.modal-content .slider .next {
+    position: absolute; /* موضع مطلق */
+    top: 50%; /* مركز من الأعلى */
+    transform: translateY(-50%); /* محاذاة عمودياً */
+    background-color: rgba(0, 0, 0, 0.5); /* لون الخلفية */
+    color: white; /* لون النص */
+    border: none; /* بدون حدود */
+    padding: 10px; /* مسافة داخلية */
+    cursor: pointer; /* شكل المؤشر */
+}
 
-        .menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background-color: black;
-            color: white;
-            padding: 20px;
-            box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease-in-out;
-            transform: translateX(100%);
-        }
+.modal-content .slider .prev {
+    left: 0; /* الجانب الأيسر */
+}
 
-        .menu.active {
-            display: block;
-            transform: translateX(0);
-        }
+.modal-content .slider .next {
+    right: 0; /* الجانب الأيمن */
+}
 
-        .menu a {
-            display: block;
-            margin: 20px 0;
-            color: white;
-            text-decoration: none;
-            font-size: 1.5em;
-        }
+.modal-content .buy-button {
+    margin-top: 20px; /* مسافة فوق زر الشراء */
+}
 
-        .menu a:hover {
-            color: darkblue;
-        }
+.modal-buttons {
+    display: flex; /* استخدام الفليكس */
+    justify-content: space-around; /* توزيع العناصر */
+}
 
-        .home-link {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2em;
-            padding: 10px 20px;
-            background-color: darkblue;
-            border-radius: 5px;
-        }
+.close {
+    color: #aaa; /* لون الزر */
+    float: right; /* محاذاة إلى اليمين */
+    font-size: 28px; /* حجم الخط */
+    font-weight: bold; /* سمك الخط */
+}
 
-        .icon {
-            width: 24px;
-            height: 24px;
-            animation: draw 2s forwards;
-        }
-
-        @keyframes draw {
-            from { width: 0; height: 0; opacity: 1; }
-            to { width: 13%; height: 13%; opacity: 1; }
-        }
-
-        /* تصميم المنتجات */
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-
-        article {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.2s;
-        }
-
-        article:hover {
-            transform: scale(1.05);
-        }
-
-        img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px 10px 0 0;
-            cursor: pointer; /* نضيف هذا حتى يظهر أن الصورة قابلة للنقر */
-        }
-
-        h2 {
-            font-size: 1.5em;
-            margin: 10px 0;
-            text-align: center;
-            width: 100%;
-        }
-
-        p {
-            font-size: 1em;
-            color: #555;
-        }
-
-        .buy-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: darkblue;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-        }
-
-        .buy-button:hover {
-            background-color: #0044cc;
-        }
-
-        /* تصميم النافذة المنبثقة */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 10% auto;
-            padding: 20px;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .modal-content img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .modal-content .slider {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .modal-content .slider img {
-            width: 100%;
-            height: auto;
-        }
-
-        .modal-content .slider .prev,
-        .modal-content .slider .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        .modal-content .slider .prev {
-            left: 0;
-        }
-
-        .modal-content .slider .next {
-            right: 0;
-        }
-
-        .modal-content .buy-button {
-            margin-top: 20px;
-        }
-
-        .modal-buttons {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <div class="logo-container">
-        <img src="logo00.jpg" alt="علامة الموقع" class="icon">
-        <h1>VELLIA</h1>
-    </div>
-    <img src="....jpeg" alt="Menu Icon" class="menu-icon" id="menuIcon">
-</header>
-
-<!-- Menu -->
-<div class="menu" id="menu">
-    <a href="index.html" class="home-link">Home</a>
-    <a href="accessories.html">Accessories</a>
-    <a href="electronics.html">electronics</a>
-    <a href="Perfumes.html">Perfumes</a>
-    <a href="clothes.html">clothes</a>
-    <a href="makeup.html">Makeup</a>
-    <a href="other.html">other</a>
-    <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx">تواصل معنا</a>
-</div>
-
-<!-- نافذة منبثقة للمنتجات -->
-<div id="productModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class="slider">
-            <button class="prev">&lt;</button>
-            <img id="productImage" src="" alt="Product Image">
-            <button class="next">&gt;</button>
-        </div>
-        <h3 id="productTitle"></h3>
-        <a href="https://www.instagram.com/the__wolf_shop?igsh=Nmwyc2s1bDZhbnEx" target="_blank" class="buy-button">شراء الآن</a>
-    </div>
-</div>
-
-<section>
-    <div id="accessories" class="category">
-        <h2> Home Accessories</h2>
-        <div class="products">
-            <article>
-                <img src="شمع معطر كبير.jpg" alt="شمع معطر كبير" data-title=" شمع معطر كبير" data-images="شمع معطر كبير.jpg,شمع معطر كبير 2.jpg">
-                <h2>شمع معطر كبير</h2>
-                <p>شمع  معطر حجم كبير</p>
-                <p>2.5 JD</p>
-            </article>
-            <article>
-                <img src="شمع معطر 2.jpg" alt="شمع معطر " data-title="شمع معطر" data-images="شمع معطر 2.jpg,شمع معطر.jpg,شمع معطر3.jpg">
-                <h2>شمع معطر</h2>
-                <p>شمع مرطبان معطر حجم كبير</p>
-                <p>2.5 JD</p>
-            </article>
-            <article>
-                <img src="شمع معطر مرطبان حجم صغير.jpg" alt="شمع معطر " data-title="شمع معطر" data-images="شمع معطر مرطبان حجم صغير.jpg,شمع معطر مرطبان حجم صغير1.jpg,شمع معطر مرطبان حجم صغير2.jpg">
-                <h2>شمع معطر</h2>
-                <p>شمع مرطبان معطر حجم صغير</p>
-                <p>2 JD</p>
-            </article>
-            <article>
-                <img src="شمع سادة.jpg" alt="شمع سادة " data-title="شمع سادة" data-images="شمع سادة.jpg,شمع سادة2.jpg,شمع سادة3.jpg">
-                <h2>شمع سادة</h2>
-                <p></p>
-                <p>1.5 JD</p>
-            </article>
-            <article>
-                <img src="مبخرة مع زيت.jpg" alt="مبخرة مع زيت" data-title="مبخرة مع زيت" data-images="مبخرة مع زيت.jpg,زيت عطر فانيلا.jpg,زيت عطر لفندر.jpg,زيت عطر كوكو.jpg,زيت عطر ياسين.jpg">
-                <h2>مبخرة مع زيت</h2>
-                <p>مبخرة مع عطر زيتي ب 4 نكهات</p>
-                <p>4 JD</p>
-            </article>
-            <article>
-                <img src="مبخرة خشب2.jpg" alt="مبخرة خشب مع بخور " data-title="مبخرة خشب مع بخور " data-images="مبخرة خشب2.jpg,مبخرة خشب3.jpg,مبخرة خشب4.jpg">
-                <h2>مبخرة خشب مع بخور</h2>
-                <p></p>
-                <p>2 JD</p>
-            </article>
-            <article>
-                <img src="تقويم مكتبي.jpg" alt="تقويم مكتبي" data-title="تقويم مكتبي" data-images="تقويم مكتبي.jpg,تقويم مكتبي 2.jpg,تقويم مكتبي 3.jpg">
-                <h2>تقويم مكتبي</h2>
-                <p>تقويم مكتبي خشبي يعطي جمالية للمكتب الخاص بك</p>
-                <p>3 JD</p>
-            </article>
-            <article>
-                <img src="شمعة زجاج.jpg" alt="شمعة زجاج" data-title="شمعة زجاج" data-images="شمعة زجاج.jpg,شمعة زجاج 3.jpg,شمعة زجاج 2.jpg">
-                <h2>شمعة زجاج</h2>
-                <p></p>
-                <p>2 JD</p>
-            </article>
-            <article>
-                <img src="مبخرة كريستال.jpg" alt="مبخرة كريستال" data-title="مبخرة كريستال" data-images="مبخرة كريستال.jpg">
-                <h2>مبخرة كريستال</h2>
-                <p></p>
-                <p>2 JD</p>
-            </article>
-        </div>
-    </div>
-</section>
-
-<script>
-    // Toggle Menu
-    const menuIcon = document.getElementById('menuIcon');
-    const menu = document.getElementById('menu');
-
-    menuIcon.addEventListener('click', () => {
-        menu.classList.toggle('active');
-    });
-
-    // Modal Variables
-    const productModal = document.getElementById('productModal');
-    const closeModal = document.querySelector('.close');
-    const productImage = document.getElementById('productImage');
-    const productTitle = document.getElementById('productTitle');
-    let currentImageIndex = 0;
-    let imagesArray = [];
-
-    // Function to show the modal
-    document.querySelectorAll('.products img').forEach(image => {
-        image.addEventListener('click', function() {
-            const images = this.getAttribute('data-images').split(',');
-            imagesArray = images;
-            currentImageIndex = 0;
-            productImage.src = imagesArray[currentImageIndex];
-            productTitle.textContent = this.getAttribute('data-title');
-            productModal.style.display = 'block';
-        });
-    });
-
-    // Close modal
-    closeModal.addEventListener('click', function() {
-        productModal.style.display = 'none';
-    });
-
-    // Image slider functionality
-    document.querySelector('.next').addEventListener('click', () => {
-        currentImageIndex = (currentImageIndex + 1) % imagesArray.length;
-        productImage.src = imagesArray[currentImageIndex];
-    });
-
-    document.querySelector('.prev').addEventListener('click', () => {
-        currentImageIndex = (currentImageIndex - 1 + imagesArray.length) % imagesArray.length;
-        productImage.src = imagesArray[currentImageIndex];
-    });
-
-    // Close modal if clicking outside the modal content
-    window.onclick = function(event) {
-        if (event.target == productModal) {
-            productModal.style.display = 'none';
-        }
-    };
-</script>
-
-</body>
-</html>
+.close:hover,
+.close:focus {
+    color: black; /* لون عند التحويم */
+    text-decoration: none; /* إزالة التسطير */
+    cursor: pointer; /* شكل المؤشر */
+}
