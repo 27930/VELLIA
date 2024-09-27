@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VELLIA</title>
-    <link rel="icon" href="logo00.jpg">
+	    <link rel="icon" href="logo00.jpg">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
-            background-color: #f8f8f8;
+            background-color: #f0f0f0;
         }
 
-        /* Header Design */
         header {
             background-color: #000;
             color: white;
@@ -24,10 +23,8 @@
             justify-content: space-between;
             align-items: center;
             height: 80px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
             z-index: 1000;
-            position: sticky;
-            top: 0;
         }
 
         .logo-container {
@@ -37,38 +34,33 @@
 
         .logo-container h1 {
             margin: 0;
-            padding-left: 15px;
-            font-size: 2em;
-            letter-spacing: 1px;
-            font-family: 'Trebuchet MS', sans-serif;
+            padding-left: 10px;
+            font-size: 1.8em;
         }
 
         .logo-container img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            width: 50px;
+            height: 50px;
         }
 
-        /* Menu Icon */
         .menu-icon {
-            width: 30px;
-            height: 30px;
+            width: 24px;
+            height: 24px;
             cursor: pointer;
         }
 
-        /* Fullscreen Menu */
         .menu {
             display: none;
             position: fixed;
             top: 0;
             right: 0;
-            width: 60%;
+            width: 50%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: black;
             color: white;
-            padding: 40px 20px;
+            padding: 20px;
             box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
-            transition: transform 0.4s ease-in-out;
+            transition: transform 0.3s ease-in-out;
             transform: translateX(100%);
             z-index: 999;
         }
@@ -80,25 +72,49 @@
 
         .menu a {
             display: block;
-            margin: 25px 0;
+            margin: 20px 0;
             color: white;
             text-decoration: none;
             font-size: 1.5em;
-            font-family: 'Trebuchet MS', sans-serif;
-            text-align: center;
         }
 
         .menu a:hover {
-            color: #ffcc00;
+            color: darkblue;
         }
 
-        /* Product Section */
+        .home-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            background-color: darkblue;
+            border-radius: 5px;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            animation: draw 2s forwards;
+        }
+
+        @keyframes draw {
+            from { width: 0; height: 0; opacity: 1; }
+            to { width: 13%; height: 13%; opacity: 1; }
+        }
+
+        /* Responsive for mobile */
+        @media (max-width: 768px) {
+            .menu {
+                width: 70%;
+            }
+        }
+
         .mena {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            margin: 30px auto;
-            padding: 20px;
+            margin: 20px auto;
+            padding: 10px;
         }
 
         .mena a {
@@ -108,29 +124,26 @@
             color: white;
             font-size: 18px;
             text-decoration: none;
-            margin: 15px;
-            width: 180px;
-            height: 180px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 15px;
-            overflow: hidden;
+            margin: 10px;
+            width: 150px;
+            height: 150px;
+            transition: transform 0.3s;
         }
 
         .mena a img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 15px;
-            transition: transform 0.3s ease;
+            border-radius: 10px;
+            transition: box-shadow 0.3s;
         }
 
         .mena a:hover img {
-            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
 
         .mena a:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transform: scale(1.1);
         }
 
         .mena a h1 {
@@ -139,60 +152,59 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 1.4em;
-            width: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 1.2em;
         }
 
-        /* Info Section */
         .info-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 350px;
-            margin: 40px 0;
+            height: 300px;
+            overflow: hidden;
+            margin: 20px 0;
+            position: relative;
         }
 
         .info-box {
             background: linear-gradient(135deg, #00aaff, #0044cc);
             color: white;
-            padding: 40px;
-            border-radius: 15px;
+            padding: 20px;
+            border-radius: 10px;
             width: 80%;
-            max-width: 700px;
+            max-width: 600px;
             text-align: center;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transform: translateY(100%);
             transition: transform 1.5s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            z-index: 1;
         }
 
         .info-box:hover {
             transform: translateY(0);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
 
         .info-box h2 {
             margin-top: 0;
-            font-size: 2em;
+            font-size: 1.6em;
         }
 
         .info-box p {
-            font-size: 1.3em;
+            font-size: 1.2em;
         }
-
-        /* Social Media Bar */
-        #navbar2 {
-            position: fixed;
+		 #navbar2 {
+            position: fixed; 
             bottom: 0;
             left: 0;
-            width: 100%;
-            background-color: #333;
+            width: 100%; 
+            background-color: #333; 
             color: white;
             padding: 10px 0;
-            z-index: 1000;
+            z-index: 1000; 
         }
 
         #navbar2 ul {
@@ -204,7 +216,7 @@
         }
 
         #navbar2 ul li {
-            display: inline;
+            display: inline; 
             margin: 0 20px;
         }
 
@@ -216,39 +228,43 @@
         }
 
         #navbar2 ul li a:hover {
-            background-color: #575757;
+            background-color: #575757; 
             border-radius: 5px;
         }
-
         .social-icon {
             width: 24px;
             height: 24px;
             margin: 5px 0;
         }
+        .logo {
+            width: 50px;
+            height: auto;
+        }
+
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo-container">
-        <img src="logo00.jpg" alt="Logo" class="icon">
+        <img src="logo00.jpg" alt="علامة الموقع" class="icon">
         <h1>VELLIA</h1>
     </div>
-    <img src="menu-icon.jpeg" alt="Menu Icon" class="menu-icon" id="menuIcon">
+    <img src="....jpeg" alt="Menu Icon" class="menu-icon" id="menuIcon">
 </header>
 
-<!-- Product Categories -->
+<!-- mena -->
 <div class="mena" id="mena">
     <a href="accessories.html">
-        <img src="accessories.jpg" alt="Accessories">
+        <img src="اكسسوارات.jpg" alt="Accessories">
         <h1>Home Accessories</h1>
     </a>
     <a href="electronics.html">
-        <img src="electronics.webp" alt="Electronics">
-        <h1>Electronics</h1>
+        <img src="electronic photo.webp" alt="Perfumes">
+        <h1>electronics</h1>
     </a>
-    <a href="perfumes.html">
-        <img src="perfume.jpg" alt="Perfumes">
+    <a href="Perfumes.html">
+        <img src="perfurne.jpg" alt="Makeup">
         <h1>Perfumes</h1>
     </a>
     <a href="clothes.html">
@@ -256,61 +272,65 @@
         <h1>Clothes</h1>
     </a>
     <a href="makeup.html">
-        <img src="makeup.jpg" alt="Makeup">
-        <h1>Makeup</h1>
+        <img src="comming soon.jpeg" alt="Shoes">
+        <h1>makeup</h1>
     </a>
     <a href="other.html">
-        <img src="other.jpg" alt="Other">
+        <img src="comming soon.jpeg" alt="Other">
         <h1>Other</h1>
     </a>
 </div>
 
-<!-- Menu Overlay -->
+
+<!-- Menu -->
 <div class="menu" id="menu">
     <a href="index.html" class="home-link">Home</a>
     <a href="accessories.html">Accessories</a>
-    <a href="electronics.html">Electronics</a>
-    <a href="perfumes.html">Perfumes</a>
-    <a href="clothes.html">Clothes</a>
+    <a href="electronics.html">electronics</a>
+    <a href="Perfumes.html">Perfumes</a>
+    <a href="clothes.html">clothes</a>
     <a href="makeup.html">Makeup</a>
-    <a href="other.html">Other</a>
+    <a href="other.html">other</a>
     <a href="https://www.instagram.com/vellia__shop/?hl=en">تواصل معنا</a>
 </div>
 
-<!-- Info Section -->
+<!-- Info Sections -->
 <div class="info-container">
     <div class="info-box" id="aboutUs">
         <h2>من نحن</h2>
-        <p>Vellia Shop</p>
-        <h3>متجر إلكتروني متخصص في بيع المنتجات المميزة</h3>
+        <p>Vellia shop</p>
+	    <h3>هو متجر الكتروني متخصص في بيع المنتجات</h3>
     </div>
 </div>
-
-<!-- Social Media Bar -->
 <div id="navbar2">
-    <ul>
-        <li>
-            <a href="https://www.instagram.com/vellia__shop/?hl=en">
-                <img src="insta2.png" alt="Instagram Icon" class="social-icon">
-            </a>
-        </li>
-        <li>
-            <a href="https://www.facebook.com/profile.php?id=61565291297217">
-                <img src="facebook.png" alt="Facebook Icon" class="social-icon">
-            </a>
-        </li>
-        <li>
-            <a href="https://www.snapchat.com/add/thewolf_shop?invite_id=9oBy91K-&locale=en_JO&share_id=Ci77wqi_SveHHnT-Xh1-NQ">
-                <img src="snap.png" alt="Snapchat Icon" class="social-icon">
-            </a>
-        </li>
-        <li>
-            <a href="tel:0791986842">
-                <img src="call icon.png" alt="Call Icon" class="social-icon">
-            </a>
-        </li>
-    </ul>
-</div>
+        <ul>
+            <li>
+  <a href="https://www.instagram.com/vellia__shop/?hl=en">
+    <img src="insta2.png" alt="Instagram Icon" style="width: 20px; height: 20px; vertical-align: middle;">
+    
+  </a>
+</li>
+ <li>
+		<a href="https://www.facebook.com/profile.php?id=61565291297217&mibextid=LQQJ4d">
+    <img src="facebook.png" alt="facebook Icon" style="width: 20px; height: 20px; vertical-align: middle;">
+    
+  </a>
+</li>
+<li>
+		<a href="https://www.snapchat.com/add/thewolf_shop?invite_id=9oBy91K-&locale=en_JO&share_id=Ci77wqi_SveHHnT-Xh1-NQ&xp_id=1&sid=466c492798384791ae7191bcc66c5481">
+    <img src="snap.png" alt="snapchat Icon" style="width: 20px; height: 20px; vertical-align: middle;">
+    
+  </a>
+</li>
+		<li>
+		<a href="tel:0791986842">
+    <img src="call icon.png" alt="call Icon" style="width: 20px; height: 20px; vertical-align: middle;">
+    
+  </a>
+</li>
+            
+        </ul>
+    </div>
 
 <script>
     // Toggle Menu
